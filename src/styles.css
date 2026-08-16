@@ -1,0 +1,133 @@
+:root {
+  color: #050505;
+  background: #fbfaf7;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-synthesis: none;
+  line-height: 1.4;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.08) 1px, transparent 0)
+      0 0 / 18px 18px,
+    #fbfaf7;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.app-shell {
+  width: min(960px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 64px 0;
+}
+
+.site-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 36px;
+  font-size: 14px;
+}
+
+.brand,
+.site-header nav {
+  display: flex;
+  align-items: center;
+}
+
+.brand {
+  gap: 8px;
+}
+
+.brand img {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+}
+
+.brand em {
+  font-style: italic;
+}
+
+.site-header nav {
+  gap: 30px;
+}
+
+.site-header a:hover {
+  text-decoration: underline;
+}
+
+.contact-button {
+  border: 1px solid #050505;
+  border-radius: 18px;
+  padding: 12px 32px;
+}
+
+.starter-view {
+  min-height: calc(100vh - 168px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.starter-view p {
+  max-width: 560px;
+  margin: 0;
+  font-size: clamp(24px, 4vw, 34px);
+}
+
+.starter-view h1 {
+  margin: 28px 0 40px;
+  font-size: clamp(72px, 13vw, 144px);
+  line-height: 0.92;
+  letter-spacing: 0;
+}
+
+.starter-view h1 em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.starter-view .note {
+  max-width: 500px;
+  font-size: 16px;
+}
+
+@media (max-width: 760px) {
+  .app-shell {
+    width: min(100% - 28px, 560px);
+    padding: 24px 0 48px;
+  }
+
+  .site-header {
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+  }
+
+  .site-header nav {
+    grid-column: 1 / -1;
+    flex-wrap: wrap;
+    gap: 14px 20px;
+  }
+
+  .contact-button {
+    padding: 10px 18px;
+  }
+
+  .starter-view {
+    min-height: 70vh;
+  }
+}

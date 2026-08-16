@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/stowndiaz/cv-brauliodiaz#readme",
   "dependencies": {
+    "@fontsource/mulish": "^5.3.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },

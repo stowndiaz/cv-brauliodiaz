@@ -20,7 +20,6 @@
 }
 
 body {
-  position: relative;
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
@@ -28,14 +27,77 @@ body {
   background: var(--color-bg);
 }
 
-body::before {
+.animated-background {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
+  overflow: hidden;
   pointer-events: none;
+  background:
+    linear-gradient(115deg, rgba(252, 110, 34, 0.12), transparent 42%),
+    linear-gradient(245deg, rgba(255, 177, 84, 0.16), transparent 48%),
+    var(--color-bg);
+}
+
+.animated-background::after {
+  position: absolute;
+  inset: 0;
   content: "";
-  opacity: 0.25;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.3'/%3E%3C/svg%3E");
+  opacity: 0.2;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.24'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+.gradient-field {
+  position: absolute;
+  display: block;
+  width: 78vmax;
+  height: 78vmax;
+  opacity: 0.38;
+  filter: blur(48px);
+  transform-origin: center;
+  mix-blend-mode: multiply;
+  will-change: transform;
+}
+
+.gradient-field-one {
+  top: -48vmax;
+  left: -22vmax;
+  background: radial-gradient(
+    circle,
+    rgba(252, 110, 34, 0.72) 0 12%,
+    rgba(252, 110, 34, 0.28) 34%,
+    transparent 68%
+  );
+  animation: gradientFloatOne 34s ease-in-out infinite;
+}
+
+.gradient-field-two {
+  right: -38vmax;
+  bottom: -46vmax;
+  background: radial-gradient(
+    circle,
+    rgba(255, 141, 58, 0.58) 0 16%,
+    rgba(255, 190, 112, 0.26) 42%,
+    transparent 70%
+  );
+  animation: gradientFloatTwo 42s ease-in-out infinite reverse;
+}
+
+.gradient-field-three {
+  top: 22%;
+  left: 28%;
+  width: 62vmax;
+  height: 62vmax;
+  opacity: 0.24;
+  background: conic-gradient(
+    from 90deg,
+    transparent,
+    rgba(252, 110, 34, 0.34),
+    rgba(255, 180, 82, 0.24),
+    transparent
+  );
+  animation: gradientDrift 52s linear infinite;
 }
 
 a {
@@ -44,6 +106,8 @@ a {
 }
 
 .app-shell {
+  position: relative;
+  z-index: 1;
   width: min(1200px, calc(100% - 64px));
   margin: 0 auto;
   padding: 64px 0 48px;
@@ -142,7 +206,9 @@ a {
   border: 1px solid var(--color-text);
   border-radius: var(--radius-standard);
   box-shadow: var(--shadow-hard);
-  background: var(--color-accent);
+  background:
+    linear-gradient(135deg, rgba(255, 160, 80, 0.24), transparent 48%),
+    var(--color-accent);
 }
 
 .profile-card img {
@@ -308,6 +374,58 @@ a {
 
   .intro-block h1 {
     font-size: 96px;
+  }
+}
+
+@keyframes gradientFloatOne {
+  0% {
+    transform: translate3d(-5%, -3%, 0) scale(1) rotate(0deg);
+  }
+
+  50% {
+    transform: translate3d(32%, 18%, 0) scale(1.08) rotate(12deg);
+  }
+
+  100% {
+    transform: translate3d(-5%, -3%, 0) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes gradientFloatTwo {
+  0% {
+    transform: translate3d(4%, 6%, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(-28%, -22%, 0) scale(1.12);
+  }
+
+  100% {
+    transform: translate3d(4%, 6%, 0) scale(1);
+  }
+}
+
+@keyframes gradientDrift {
+  0% {
+    transform: translate3d(-14%, -8%, 0) rotate(0deg);
+  }
+
+  100% {
+    transform: translate3d(12%, 8%, 0) rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-field {
+    animation: none;
+  }
+
+  .profile-card,
+  .cv-card,
+  .story-audio,
+  .contact-button,
+  .easter-egg span {
+    transition: none;
   }
 }
 
